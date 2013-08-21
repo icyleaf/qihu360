@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'DJing360/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "djing360"
+  spec.name          = "DJing360"
   spec.version       = DJing360::VERSION
   spec.authors       = ["icyleaf"]
   spec.email         = ["icyleaf.cn@gmail.com"]
@@ -21,5 +21,4 @@ Gem::Specification.new do |spec|
   spec.add_dependency "oauth2", "~> 0.9.2"
 
   spec.add_development_dependency "bundler", "~> 1.3"
-  spec.add_development_dependency "rake"
 end
