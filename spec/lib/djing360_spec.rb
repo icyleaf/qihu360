@@ -2,9 +2,10 @@ require 'spec_helper'
 
 
 describe DJing360 do
+  pending "add some examples to (or delete)"
+
   it "Has not any method" do
-    cls = DJing360.new
-    cls.hi be_nil
-    cls.to_s 
+    client = DJing360::Client.new()
+    client.authorize_url be_nil
   end
 end
