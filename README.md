@@ -1,15 +1,16 @@
-# 360
+# Qihu360
 
-整合 `open.360.cn` 的一些业务
+整合 `open.360.cn` 的一些业务 `Ruby` 封装。
 
-* [x] OAuth2 的封装
-* [x] 点睛营销平台(广告竞价排名系统) API `Ruby` 封装。
+- OAuth2 的封装
+- 点睛营销平台(广告竞价排名系统) API 
+
 
 ## 安装
 
 在你项目的 `Gemfile` 文件添加下行内容:
 
-    gem '360'
+    gem 'qihu360'
 
 保存后执行:
 
@@ -17,14 +18,15 @@
 
 或者直接执行下行命令安装:
 
-    $ gem install 360
+    $ gem install qihu360
+
 
 ## 代码实例
 
-### 处理 OAuth 2
+### 验证 OAuth 2
 
     # 处理 oauth2
-    auth = DianJing::Auth.new(id:'xxx', secret:'yyy')
+    auth = Qihu::Auth.new(id:'xxx', secret:'yyy')
     
     # 默认 redirect_uri 是 oob
     auth_url = auth.authorize_url() 
@@ -36,16 +38,19 @@
     auth.get_token('code')
 
 
-### 使用 access token 初始化
+#### 使用 access token 初始化
   
-  auth = DianJing::Auth.new(id:'xxx', secret:'yyy')
-  auth.get_token_from_hash(:access_token => 'zzz')
-  # 补充 refresh_token 和 expires_at
+  auth = Qihu::Auth.new(id:'xxx', secret:'yyy', token:{
+      :access_token => 'zzz', :refresh_token => 'qqq', :expires_at => 36000
+  })
+  
+  // 或者这样传递 access token
   auth.get_token_from_hash(:access_token => 'zzz', :refresh_token => 'qqq', :expires_at => 36000)
 
-  client = DianJing::Client(auth)
+### 调用广告系统接口
 
-### 调用平台接口
+    # 初始化必须传入获得 access token 的 Qihu::Auth 实例
+    client = Qihu::DianJing::Client(auth)
 
     # 请求 account 的账户信息，默认返回 json 格式
     response = client.account.getInfo 

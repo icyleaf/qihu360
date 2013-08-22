@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["icyleaf.cn@gmail.com"]
   spec.description   = %q{Qihu 360.cn OAuth2 & Dianjing(Advertising system) API wrapper}
   spec.summary       = %q{Qihu 360.cn OAuth2 & Dianjing API wrapper}
-  spec.homepage      = "https://github.com/icyleaf/DJing360"
+  spec.homepage      = "https://github.com/icyleaf/qihu360"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
