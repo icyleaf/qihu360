@@ -5,31 +5,27 @@ module DJing360
         @client = client
       end
 
-      def method_missing(name, params:{}, headers:{})
+      def method_missing(name, *args, &block)
         if name.match(/_/)
           name = name.to_s.split('_').each_with_index.map{|k, i| (i > 0) ? k.capitalize : k}.join("")
         end
-        
+
         headers = {
           :apiKey => @client.oauth2.id,
           :accessToken => @client.token.token,
           :serveToken => Time.now.to_i.to_s,
-        }.merge(headers)
+        }
 
         params = {
           :format => 'json'
-        }.merge(params)
+        }.merge(args[0])
 
-        if name.match(/^get/)
-          @client.token.get(_build_uri_path(name), 
-            :headers => headers,
-            :params => params,
-          )
-        else
-          @client.token.post(_build_uri_path(name), 
-            :headers => headers,
-            :params => params,
-          )
+        begin
+          method = name.match(/^get/) ? :get : :post
+          uri_path = _build_uri_path(name)
+          @client.token.request(method, uri_path, :headers => headers, :params => params)
+        rescue OAuth2::Error
+          raise "Invaild API: #{@client.api_site}/#{uri_path}"
         end
       end
 
@@ -47,7 +43,7 @@ module DJing360
       protected
         def _build_uri_path(uri)
           class_name = self.class.name.split("::")[-1].downcase
-          "/#{@client.api_version}/#{class_name}/#{uri}"
+          "#{@client.api_version}/#{class_name}/#{uri}"
         end
     end
   end

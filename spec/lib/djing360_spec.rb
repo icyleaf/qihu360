@@ -56,8 +56,5 @@ describe DJing360::Client do
       expect(subject.authorize_url :scope => 'all').to match('scope=all')
       expect(subject.authorize_url :redirect_uri => 'icyleaf.com').to match('redirect_uri=icyleaf.com')
     end
-
-    
-
   end
 end
