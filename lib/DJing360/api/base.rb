@@ -6,26 +6,29 @@ module DJing360
       end
 
       def method_missing(name, params:{}, headers:{})
-        uri = name.to_s.split('_').each_with_index.map{|k, i| (i > 0) ? k.capitalize : k}.join("")
+        # uri = name.to_s.split('_').each_with_index.map{|k, i| (i > 0) ? k.capitalize : k}.join("")
        
-        headers.merge({
+        headers = {
           :apiKey => @client.oauth2.id,
           :accessToken => @client.token.token,
           :serveToken => Time.now.to_i.to_s,
+        }.merge(headers)
+
+        params = {
           :format => 'json'
-        })
+        }.merge(params)
 
-        params.merge({
-          :format => 'json'
-        })
-
-        puts _build_uri_path(uri)
-        puts @client.oauth2.site
-
-        @client.token.get(_build_uri_path(uri), 
-          :headers => headers,
-          :params => params,
-        )
+        if name.match(/^update/)
+          @client.token.post(_build_uri_path(name), 
+            :headers => headers,
+            :params => params,
+          )
+        else
+          @client.token.get(_build_uri_path(name), 
+            :headers => headers,
+            :params => params,
+          )
+        end
       end
 
 

@@ -24,8 +24,7 @@ module DJing360
         )
 
       if !access_token.nil? and !access_token.empty?
-        @oauth2.site = @api_site
-        @token = OAuth2::AccessToken.new(@oauth2, access_token)
+        @token = _get_api_token(access_token)
       end
     end
 
@@ -37,6 +36,8 @@ module DJing360
     def get_token(code, redirect_uri:'')
       @redirect_uri = redirect_uri unless redirect_uri.empty?
       @token = @oauth2.auth_code.get_token(code, :redirect_uri => @redirect_uri)
+
+      @token = _get_api_token(@token.token)
     end
 
     def account
@@ -44,7 +45,7 @@ module DJing360
     end
 
     def campaign
-      # @campaign || = DJing360::API::Campaign.new(self)
+      @campaign ||= DJing360::API::Campaign.new(self)
     end
 
     def group
@@ -67,26 +68,10 @@ module DJing360
       
     end
 
-    # def method_missing(name, params:{}, headers:{})
-    #   cls = name.methods
-    #   puts cls
-
-    #   uri = name.to_s.split('_').map{ |k| k.capitalize}.join("")
-     
-    #   headers.merge({
-    #     :apiKey => @oauth2.id,
-    #     :accessToken => @token.token,
-    #     :serveToken => Time.now.to_i.to_s,
-    #     })
-
-    #   params.merge({
-    #     :format => 'json'
-    #   })
-
-    #   @token.get(_build_uri_path(uri), 
-    #     :headers => headers,
-    #     :params => params,
-    #   )
-    # end
+    private
+      def _get_api_token(access_token)
+        @oauth2.site = @api_site
+        @token = OAuth2::AccessToken.new(@oauth2, access_token)
+      end
   end
 end

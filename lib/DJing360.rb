@@ -3,3 +3,4 @@ require "DJing360/client"
 
 require "DJing360/api/base"
 require "DJing360/api/account"
+require "DJing360/api/campaign"

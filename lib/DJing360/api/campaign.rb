@@ -1,6 +1,6 @@
 module DJing360
   module API
-    class Account < Base
+    class Campaign < Base
       # def get_info(params:{}, headers:{})  
       # end
 
