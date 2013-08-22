@@ -1,12 +1,11 @@
 require 'spec_helper'
 
-describe DianJing::Client do
+describe Qihu::Auth do
   client_id     = ""
   client_secret = ""
-  # pending "add some examples to (or delete)"
 
   subject do
-    DianJing::Client.new(client_id:client_id, client_secret:client_secret)
+    Qihu::Auth.new(client_id, client_secret)
   end
 
   describe "#初始化" do

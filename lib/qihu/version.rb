@@ -1,3 +1,3 @@
-module DianJing
+module Qihu
   VERSION = "0.3.10"
 end

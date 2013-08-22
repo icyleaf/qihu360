@@ -1,3 +1,10 @@
+module Qihu
+  module DianJing
+  end
+end
+
+require "qihu/dianjing/client"
+
 require "qihu/dianjing/api/base"
 require "qihu/dianjing/api/account"
 require "qihu/dianjing/api/campaign"

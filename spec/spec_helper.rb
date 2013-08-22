@@ -1,1 +1,1 @@
-require 'DianJing'
+require 'Qihu'

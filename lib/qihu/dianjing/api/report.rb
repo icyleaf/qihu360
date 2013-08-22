@@ -1,6 +1,8 @@
-module DianJing
-  module API
-    class Report < Base
+module Qihu
+  module DianJing
+    module API
+      class Report < Base
+      end
     end
   end
 end
