@@ -6,6 +6,10 @@ module DJing360
       end
 
       def method_missing(name, params:{}, headers:{})
+        if name.match(/_/)
+          name = name.to_s.split('_').each_with_index.map{|k, i| (i > 0) ? k.capitalize : k}.join("")
+        end
+        
         headers = {
           :apiKey => @client.oauth2.id,
           :accessToken => @client.token.token,
