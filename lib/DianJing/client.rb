@@ -1,6 +1,6 @@
 require 'oauth2'
 
-module DJing360
+module DianJing
   class Client
     attr_reader :oauth2, :token
     attr_accessor :api_version, :api_site, :redirect_uri
@@ -41,31 +41,31 @@ module DJing360
     end
 
     def account
-      @account ||= DJing360::API::Account.new(self)
+      @account ||= DianJing::API::Account.new(self)
     end
 
     def campaign
-      @campaign ||= DJing360::API::Campaign.new(self)
+      @campaign ||= DianJing::API::Campaign.new(self)
     end
 
     def group
-      @group ||= DJing360::API::Group.new(self)
+      @group ||= DianJing::API::Group.new(self)
     end
 
     def creative
-      @creative ||= DJing360::API::Creative.new(self)
+      @creative ||= DianJing::API::Creative.new(self)
     end
 
     def keyword
-      @keyword ||= DJing360::API::Keyword.new(self)
+      @keyword ||= DianJing::API::Keyword.new(self)
     end
 
     def report
-      @report ||= DJing360::API::Report.new(self)
+      @report ||= DianJing::API::Report.new(self)
     end
 
     def tool
-      @tool ||= DJing360::API::Tool.new(self)
+      @tool ||= DianJing::API::Tool.new(self)
     end
 
     private

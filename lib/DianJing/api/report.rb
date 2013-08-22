@@ -1,4 +1,4 @@
-module DJing360
+module DianJing
   module API
     class Report < Base
     end

@@ -1,12 +1,12 @@
 require 'spec_helper'
 
-describe DJing360::Client do
+describe DianJing::Client do
   client_id     = ""
   client_secret = ""
   # pending "add some examples to (or delete)"
 
   subject do
-    DJing360::Client.new(client_id:client_id, client_secret:client_secret)
+    DianJing::Client.new(client_id:client_id, client_secret:client_secret)
   end
 
   describe "#初始化" do

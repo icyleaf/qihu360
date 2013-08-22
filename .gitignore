@@ -7,6 +7,7 @@ Gemfile.lock
 InstalledFiles
 _yardoc
 coverage
+test.rb
 doc/
 lib/bundler/man
 pkg

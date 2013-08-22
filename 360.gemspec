@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'DJing360/version'
+require 'DianJing/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "DJing360"
-  spec.version       = DJing360::VERSION
+  spec.name          = "360"
+  spec.version       = DianJing::VERSION
   spec.authors       = ["icyleaf"]
   spec.email         = ["icyleaf.cn@gmail.com"]
   spec.description   = %q{360.cn Dianjing(Advertising system) API wrapper}

@@ -1,1 +1,1 @@
-require 'DJing360'
+require 'DianJing'

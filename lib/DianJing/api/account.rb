@@ -1,4 +1,4 @@
-module DJing360
+module DianJing
   module API
     class Account < Base
       # def get_info(params:{}, headers:{})  

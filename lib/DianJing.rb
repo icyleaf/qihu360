@@ -1,0 +1,11 @@
+require "DianJing/version"
+require "DianJing/client"
+
+require "DianJing/api/base"
+require "DianJing/api/account"
+require "DianJing/api/campaign"
+require "DianJing/api/group"
+require "DianJing/api/creative"
+require "DianJing/api/keyword"
+require "DianJing/api/report"
+require "DianJing/api/tool"

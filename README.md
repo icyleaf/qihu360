@@ -1,4 +1,4 @@
-# DJing360
+# 360 DianJing
 
 360.cn 点睛营销平台(广告竞价排名系统) API `Ruby` 封装。
 
@@ -10,7 +10,7 @@
 
 在你项目的 `Gemfile` 文件添加下行内容:
 
-    gem 'DJing360'
+    gem '360'
 
 保存后执行:
 
@@ -18,14 +18,14 @@
 
 或者直接执行下行命令安装:
 
-    $ gem install DJing360
+    $ gem install 360
 
 ## 代码实例
 
 ### 处理 OAuth 2
 
     # 处理 oauth2
-    client = DJing360::Client.new(id:'xxx', secret:'yyy')
+    client = DianJing::Client.new(id:'xxx', secret:'yyy')
     
     # 默认 redirect_uri 是 oob
     auth_url = client.authorize_url() 
@@ -38,7 +38,7 @@
 
 ### 使用 access token 初始化
 
-  client = DJing360::Client(id:'xxx', secret:'yyy', access_token:'zzz')
+  client = DianJing::Client(id:'xxx', secret:'yyy', access_token:'zzz')
 
 ### 调用平台接口
 
