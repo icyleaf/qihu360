@@ -1,10 +1,9 @@
-# 360 DianJing
+# 360
 
-360.cn 点睛营销平台(广告竞价排名系统) API `Ruby` 封装。
+整合 `open.360.cn` 的一些业务
 
-## 环境依赖
-
-* Ruby 2.0
+* [x] OAuth2 的封装
+* [x] 点睛营销平台(广告竞价排名系统) API `Ruby` 封装。
 
 ## 安装
 
@@ -25,20 +24,26 @@
 ### 处理 OAuth 2
 
     # 处理 oauth2
-    client = DianJing::Client.new(id:'xxx', secret:'yyy')
+    auth = DianJing::Auth.new(id:'xxx', secret:'yyy')
     
     # 默认 redirect_uri 是 oob
-    auth_url = client.authorize_url() 
+    auth_url = auth.authorize_url() 
 
     # 设置回调网址和验证界面模式 
-    auth_url = client.authorize_url(redirect_uri:'http://icyleaf.com', display:'desktop')
+    auth_url = auth.authorize_url(redirect_uri:'http://icyleaf.com', display:'desktop')
 
     # 获取的 access token
-    client.get_token('code')
+    auth.get_token('code')
+
 
 ### 使用 access token 初始化
+  
+  auth = DianJing::Auth.new(id:'xxx', secret:'yyy')
+  auth.get_token_from_hash(:access_token => 'zzz')
+  # 补充 refresh_token 和 expires_at
+  auth.get_token_from_hash(:access_token => 'zzz', :refresh_token => 'qqq', :expires_at => 36000)
 
-  client = DianJing::Client(id:'xxx', secret:'yyy', access_token:'zzz')
+  client = DianJing::Client(auth)
 
 ### 调用平台接口
 
