@@ -5,9 +5,9 @@ module DianJing
     attr_reader :oauth2, :token
     attr_accessor :api_version, :api_site, :redirect_uri
 
-    def initialize(client_id:nil, client_secret:nil, 
-                   redirect_uri:'oob', 
+    def initialize(id:nil, secret:nil, 
                    access_token:'', 
+                   redirect_uri:'oob', 
                    oauth2_site:'https://openapi.360.cn', 
                    api_site:'https://api.e.360.cn', 
                    api_version:'1.0')

@@ -1,3 +1,3 @@
-module DJing360
-  VERSION = "0.3.1"
+module DianJing
+  VERSION = "0.3.2"
 end
