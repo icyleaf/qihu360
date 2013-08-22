@@ -1,5 +1,5 @@
 require "dianjing/version"
-require "dianjing/oauth2"
+require "dianjing/auth"
 require "dianjing/client"
 
 require "dianjing/api/base"

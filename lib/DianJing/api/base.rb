@@ -1,7 +1,7 @@
 module DianJing
   module API
     class Base
-      def initialize(client)
+      def initialize(client, options={})
         @client = client
       end
 
@@ -16,29 +16,26 @@ module DianJing
 
         begin
           method = name.match(/^get/) ? :get : :post
-          uri_path = _build_uri_path(name)
-          @client.token.request(method, uri_path, :headers => client_headers, :params => params)
+          uri_path = uri_path(name)
+
+          @client.auth.token.request(method, uri_path, :headers => client_headers, :params => params)
         rescue OAuth2::Error
-          raise "Invaild API: #{@client.api_site}/#{uri_path}"
+          raise "Invaild API: #{@client.site}/#{uri_path}"
         end
       end
 
-
-      # The OAuth client_id and client_secret
-      #
-      # @return [Hash]
-      def client_headers
-        {
-          :apiKey => @client.oauth2.id,
-          :accessToken => @client.token.token,
-          :serveToken => Time.now.to_i.to_s,
-        }
-      end
-
       protected
-        def _build_uri_path(uri)
+        def client_headers
+          {
+            :apiKey => @client.auth.token.client.id,
+            :accessToken => @client.auth.token.token,
+            :serveToken => Time.now.to_i.to_s,
+          }
+        end
+
+        def uri_path(uri)
           class_name = self.class.name.split("::")[-1].downcase
-          "#{@client.api_version}/#{class_name}/#{uri}"
+          "#{@client.version}/#{class_name}/#{uri}"
         end
     end
   end

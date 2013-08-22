@@ -2,29 +2,18 @@ require 'oauth2'
 
 module DianJing
   class Client
-    attr_reader :oauth2, :token
-    attr_accessor :api_version, :api_site, :redirect_uri
+    attr_reader :auth
+    attr_accessor :version, :site, :uri
 
-    def initialize(id:nil, secret:nil, 
-                   access_token:'', 
-                   redirect_uri:'oob', 
-                   oauth2_site:'https://openapi.360.cn', 
-                   api_site:'https://api.e.360.cn', 
-                   api_version:'1.0')
+    def initialize(auth, options={})
+      @site = options[:site] ? options[:site] : 'https://api.e.360.cn'
+      @version = options[:version] ? options[:version] : '1.0'
 
-
-      @api_version = api_version
-      @api_site = api_site
-      @redirect_uri = redirect_uri
-      @oauth2 = OAuth2::Client.new(client_id, client_secret,
-        :site => oauth2_site,
-        :authorize_url => '/oauth2/authorize',
-        :token_url => '/oauth2/access_token',
-        :ssl => {:verify => false},
-        )
-
-      if !access_token.nil? and !access_token.empty?
-        @token = _get_api_token(access_token)
+      if auth.is_a?(DianJing::Auth)
+        auth.token.client.site = @site
+        @auth = auth
+      else
+        raise 'auth must be "DianJing::Auth" instance.'
       end
     end
 
@@ -70,7 +59,7 @@ module DianJing
 
     private
       def _get_api_token(access_token)
-        @oauth2.site = @api_site
+        @oauth2.site = @site
         @token = OAuth2::AccessToken.new(@oauth2, access_token)
       end
   end
