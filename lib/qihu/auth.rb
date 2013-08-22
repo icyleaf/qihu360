@@ -2,10 +2,10 @@ require 'oauth2'
 
 module Qihu
   class Auth
-    attr_reader :redirect_uri, :access_token, :refresh_token, :expires_at, :expires_in
-    attr_accessor :token
+    attr_reader :oauth2, :access_token, :refresh_token, :expires_at, :expires_in
+    attr_accessor :token, :redirect_uri
 
-    def initialize(client_id, client_secret, redirect_uri='oob', site='https://openapi.360.cn')
+    def initialize(client_id, client_secret, token={}, redirect_uri='oob', site='https://openapi.360.cn')
       @redirect_uri = redirect_uri
       @oauth2 = OAuth2::Client.new(client_id, client_secret,
         :site => site,
@@ -13,6 +13,10 @@ module Qihu
         :token_url => '/oauth2/access_token',
         :ssl => {:verify => false},
       )
+
+      if token
+        @token = OAuth2::AccessToken.from_hash(@oauth2, token)
+      end
     end
 
     def authorize_url(options={})
@@ -37,7 +41,6 @@ module Qihu
 
     def get_token_from_hash(token={})
       @token = OAuth2::AccessToken.from_hash(@oauth2, token)
-
       return self
     end
   end

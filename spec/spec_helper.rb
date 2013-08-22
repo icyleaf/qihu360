@@ -1,1 +1,1 @@
-require 'Qihu'
+require 'qihu'
