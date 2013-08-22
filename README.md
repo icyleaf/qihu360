@@ -6,17 +6,17 @@
 
 * Ruby 2.0
 
-## 安装（暂无法使用）
+## 安装
 
-Add this line to your application's Gemfile:
+在你项目的 `Gemfile` 文件添加下行内容:
 
     gem 'DJing360'
 
-And then execute:
+保存后执行:
 
     $ bundle
 
-Or install it yourself as:
+或者直接执行下行命令安装:
 
     $ gem install DJing360
 
@@ -52,8 +52,8 @@ Or install it yourself as:
 
 ## 贡献代码
 
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+1. Fork 本仓库
+2. 创建你自己的 feature 分支 (`git checkout -b my-new-feature`)
+3. 提交你的代码 (`git commit -am 'Add some feature'`)
+4. 提交你的分支 (`git push origin my-new-feature`)
+5. 创建一个新的 Pull Request
