@@ -10,12 +10,6 @@ module DJing360
           name = name.to_s.split('_').each_with_index.map{|k, i| (i > 0) ? k.capitalize : k}.join("")
         end
 
-        headers = {
-          :apiKey => @client.oauth2.id,
-          :accessToken => @client.token.token,
-          :serveToken => Time.now.to_i.to_s,
-        }
-
         params = {
           :format => 'json'
         }.merge(args[0])
@@ -23,7 +17,7 @@ module DJing360
         begin
           method = name.match(/^get/) ? :get : :post
           uri_path = _build_uri_path(name)
-          @client.token.request(method, uri_path, :headers => headers, :params => params)
+          @client.token.request(method, uri_path, :headers => client_headers, :params => params)
         rescue OAuth2::Error
           raise "Invaild API: #{@client.api_site}/#{uri_path}"
         end
@@ -33,10 +27,11 @@ module DJing360
       # The OAuth client_id and client_secret
       #
       # @return [Hash]
-      def client_params
+      def client_headers
         {
-          'client_id' => @client.id, 
-          'client_secret' => @client.secret,
+          :apiKey => @client.oauth2.id,
+          :accessToken => @client.token.token,
+          :serveToken => Time.now.to_i.to_s,
         }
       end
 

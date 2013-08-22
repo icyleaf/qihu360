@@ -8,9 +8,9 @@ Gem::Specification.new do |spec|
   spec.version       = DJing360::VERSION
   spec.authors       = ["icyleaf"]
   spec.email         = ["icyleaf.cn@gmail.com"]
-  spec.description   = %q{360 Dianjing Advertising system API v1.0 wrapper}
-  spec.summary       = %q{360 Dianjing API wrapper}
-  spec.homepage      = ""
+  spec.description   = %q{360.cn Dianjing(Advertising system) API wrapper}
+  spec.summary       = %q{360.cn Dianjing API wrapper}
+  spec.homepage      = "https://github.com/icyleaf/DJing360"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)

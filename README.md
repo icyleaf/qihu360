@@ -1,6 +1,6 @@
 # DJing360
 
-TODO: Write a gem description
+TODO: 360.cn Dianjing(Advertising system) API wrapper
 
 ## Installation
 
