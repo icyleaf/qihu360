@@ -49,23 +49,23 @@ module DJing360
     end
 
     def group
-      
+      @group ||= DJing360::API::Group.new(self)
     end
 
     def creative
-      
+      @creative ||= DJing360::API::Creative.new(self)
     end
 
     def keyword
-      
+      @keyword ||= DJing360::API::Keyword.new(self)
     end
 
     def report
-      
+      @report ||= DJing360::API::Report.new(self)
     end
 
     def tool
-      
+      @tool ||= DJing360::API::Tool.new(self)
     end
 
     private

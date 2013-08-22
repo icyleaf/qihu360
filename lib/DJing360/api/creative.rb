@@ -1,6 +1,6 @@
 module DJing360
   module API
-    class Campaign < Base
+    class Creative < Base
     end
   end
 end
