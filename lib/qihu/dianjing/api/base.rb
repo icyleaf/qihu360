@@ -13,15 +13,22 @@ module Qihu
 
           params = {
             :format => 'json'
-          }.merge(args[0])
+          }
+          params = params.merge(args[0]) if args[0].is_a?(Hash)
 
           begin
-            method = name.match(/^get/) ? :get : :post
-            uri_path = uri_path(name)
+            allowed_methods = [:get, :post, :put, :delete]
+            if params.include?(:method)
+              mehtod = params.delete(:method).downcase.to_sym
+              method = :get unless allowed_methods.include?method
+            else
+              method = name.match(/^get/) ? :get : :post
+            end
 
+            uri_path = uri_path(name)
             @client.auth.token.request(method, uri_path, :headers => client_headers, :params => params)
-          rescue OAuth2::Error
-            raise "Invaild API: #{@client.site}/#{uri_path}"
+          rescue OAuth2::Error => e
+            raise "Invaild API: '#{@client.site}/#{uri_path}' with message:\n#{e.message}"
           end
         end
 

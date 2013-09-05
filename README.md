@@ -59,6 +59,15 @@
     
     # 创建一个计划
     response = client.campign.add(name:'Beijing', budget:10000)
+    
+    # 更改提交的方法
+    response = client.campign.add(name:'Beijing', bugget:20000, method:'get')
+
+    # 获得返回信息
+    status = response.status
+    headers = response.headers
+    body = response.body
+    
 
 ## 贡献代码
 
