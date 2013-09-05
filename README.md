@@ -40,12 +40,12 @@
 
 #### 使用 access token 初始化
   
-  auth = Qihu::Auth.new(id:'xxx', secret:'yyy', token:{
-      :access_token => 'zzz', :refresh_token => 'qqq', :expires_at => 36000
-  })
-  
-  // 或者这样传递 access token
-  auth.get_token_from_hash(:access_token => 'zzz', :refresh_token => 'qqq', :expires_at => 36000)
+    auth = Qihu::Auth.new(id:'xxx', secret:'yyy', token:{
+        :access_token => 'zzz', :refresh_token => 'qqq', :expires_at => 36000
+    })
+
+    // 或者这样传递 access token
+    auth.get_token_from_hash(:access_token => 'zzz', :refresh_token => 'qqq', :expires_at => 36000)
 
 ### 调用广告系统接口
 
