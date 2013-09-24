@@ -47,6 +47,19 @@
     // 或者这样传递 access token
     auth.get_token_from_hash(:access_token => 'zzz', :refresh_token => 'qqq', :expires_at => 36000)
 
+#### 如何刷新 access token
+
+    auth = Qihu::Auth.new('xxx', 'yyy', token:{
+      :access_token => 'mmmm',
+      :refresh_token => 'nnnnn',
+      :expires_at => 1380050254,
+      :expires_in => 36000
+      })
+
+    # 刷新 access token 并返回自身
+    auth = auth.refresh_token
+
+
 ### 调用广告系统接口
 
     # 初始化必须传入获得 access token 的 Qihu::Auth 实例

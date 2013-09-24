@@ -14,7 +14,7 @@ module Qihu
         :ssl => {:verify => false},
       )
 
-      if token
+      if token or !token.empty?
         @token = OAuth2::AccessToken.from_hash(@oauth2, token)
       end
     end
@@ -42,6 +42,10 @@ module Qihu
     def get_token_from_hash(token={})
       @token = OAuth2::AccessToken.from_hash(@oauth2, token)
       return self
+    end
+
+    def refresh_token
+      @token.refresh!
     end
   end
 end
