@@ -23,6 +23,10 @@
 
 ## 代码实例
 
+### 导入
+
+    require 'qihu'
+
 ### 验证 OAuth 2
 
     # 处理 oauth2
@@ -74,13 +78,20 @@
     response = client.campign.add(name:'Beijing', budget:10000)
     
     # 更改提交的方法
-    response = client.campign.add(name:'Beijing', bugget:20000, method:'get')
+    begin
+        response = client.campign.add(name:'Beijing', bugget:20000, method:'get')
+    resure Qihu::FailuresError => e
+        # 捕获 API 接口返回的异常
+        puts e.message
+    end
 
     # 获得返回信息
     status = response.status
     headers = response.headers
     body = response.body
     
+
+
 
 ## 贡献代码
 
