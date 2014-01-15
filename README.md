@@ -39,8 +39,7 @@
     auth_url = auth.authorize_url(redirect_uri:'http://icyleaf.com', display:'desktop')
 
     # 获取的 access token
-    auth.get_token('code')
-
+    token = auth.get_token('code')
 
 #### 使用 access token 初始化
   
@@ -50,6 +49,20 @@
 
     // 或者这样传递 access token
     auth.get_token_from_hash(:access_token => 'zzz', :refresh_token => 'qqq', :expires_at => 36000)
+
+#### 使用用户名和密码获得 access token
+
+    # 处理 oauth2
+    auth = Qihu::Auth.new(id:'xxx', secret:'yyy')
+
+    # 默认 redirect_uri 是 oob
+    code = auth.get_code_from_account('username', 'password')
+
+    # 获取的 access token
+    token = auth.get_token(code)
+    
+    # 或者直接一步到位
+    token = auth.get_token_from_account('username', 'password')
 
 #### 如何刷新 access token
 

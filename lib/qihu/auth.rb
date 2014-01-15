@@ -1,4 +1,6 @@
 require 'oauth2'
+require 'uri'
+
 
 module Qihu
   class Auth
@@ -37,6 +39,25 @@ module Qihu
       @access_token = @token.token
 
       return self
+    end
+
+    def get_code_from_account(username, password, options={})
+      @redirect_uri = options[:redirect_uri] if options[:redirect_uri]
+      conn = Faraday.new(@oauth2.site)
+      res = conn.post(@oauth2.authorize_url, {
+        :client_id => @oauth2.id,
+        :redirect_uri => @redirect_uri, 
+        :response_type => 'code',
+        :username => username,
+        :password => password,
+        })
+
+      query = CGI.parse(URI(res.headers[:location]).query)
+      query["code"].pop
+    end
+
+    def get_token_from_account(username, password, options={})
+      self.get_token(self.get_code_from_account(username, password, options))
     end
 
     def get_token_from_hash(token={})
