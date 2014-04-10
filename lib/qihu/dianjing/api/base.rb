@@ -26,8 +26,11 @@ module Qihu
             end
 
             uri_path = uri_path(name)
-            r = @client.auth.token.request(method, uri_path, :headers => client_headers, :params => params)
-
+            if method == :get
+              r = @client.auth.token.request(method, uri_path, :headers => client_headers, :params => params)
+            else
+              r = @client.auth.token.request(method, uri_path, :headers => client_headers, :body => params)
+            end
             if self.json?(r.headers)
               data = self.to_json(r.body)
             elsif self.xml?(r.headers)
